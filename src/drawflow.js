@@ -616,6 +616,34 @@ export default class Drawflow {
 
   }
 
+  findCenter(line_x, line_y, x, y){
+    function lerp(A, B, t) {
+      // A and B are arrays where the first element is the x 
+      // and the second element is the y coordinate of the point
+      // if(t == .5) the function returns a point in the center of the line AB
+      // t is always a number between 0 and 1
+      // 0 <= t <= 1
+      return [
+        (B[0] - A[0]) * t + A[0], // the x coordinate
+        (B[1] - A[1]) * t + A[1]  // the y coordinate
+      ];
+    }
+
+    var hx1 = line_x + Math.abs(x - line_x) * curvature;
+    var hx2 = x - Math.abs(x - line_x) * curvature;
+
+    let t = .5;
+    let helperPoints = [];
+    helperPoints[0] = lerp([line_x, line_y], [hx1, line_y], t);
+    helperPoints[1] = lerp([hx1, line_y], [hx2, y], t);
+    helperPoints[2] = lerp([hx2, y], [x, y], t);
+    helperPoints[3] = lerp(helperPoints[0], helperPoints[1], t);
+    helperPoints[4] = lerp(helperPoints[1], helperPoints[2], t);
+    helperPoints[5] = lerp(helperPoints[3], helperPoints[4], t);
+
+    return helperPoints[5];
+  }
+
   drawConnection(ele) {
     var connection = document.createElementNS('http://www.w3.org/2000/svg',"svg");
     this.connection_ele = connection;
@@ -645,7 +673,6 @@ export default class Drawflow {
     let precanvasHeightZoom = precanvas.clientHeight / (precanvas.clientHeight * zoom);
     precanvasHeightZoom = precanvasHeightZoom || 0;
     var path = this.connection_ele.children[0];
-    var image = this.connection_ele.children[1];
 
     /*var line_x = this.ele_selected.offsetWidth/2 + this.line_path/2 + this.ele_selected.parentElement.parentElement.offsetLeft + this.ele_selected.offsetLeft;
     var line_y = this.ele_selected.offsetHeight/2 + this.line_path/2 + this.ele_selected.parentElement.parentElement.offsetTop + this.ele_selected.offsetTop;*/
@@ -667,32 +694,10 @@ export default class Drawflow {
     var lineCurve = this.createCurvature(line_x, line_y, x, y, curvature, 'openclose');
     path.setAttributeNS(null, 'd', lineCurve);
 
-    function lerp(A, B, t) {
-      // A and B are arrays where the first element is the x 
-      // and the second element is the y coordinate of the point
-      // if(t == .5) the function returns a point in the center of the line AB
-      // t is always a number between 0 and 1
-      // 0 <= t <= 1
-      return [
-        (B[0] - A[0]) * t + A[0], // the x coordinate
-        (B[1] - A[1]) * t + A[1]  // the y coordinate
-      ];
-    }
-
-    var hx1 = line_x + Math.abs(x - line_x) * curvature;
-    var hx2 = x - Math.abs(x - line_x) * curvature;
-
-    let t = .5;
-    let helperPoints = [];
-    helperPoints[0] = lerp([line_x, line_y], [hx1, line_y], t);
-    helperPoints[1] = lerp([hx1, line_y], [hx2, y], t);
-    helperPoints[2] = lerp([hx2, y], [x, y], t);
-    helperPoints[3] = lerp(helperPoints[0], helperPoints[1], t);
-    helperPoints[4] = lerp(helperPoints[1], helperPoints[2], t);
-    helperPoints[5] = lerp(helperPoints[3], helperPoints[4], t);
-
-    image.setAttribute('x',helperPoints[5][0]);
-    image.setAttribute('y',helperPoints[5][1]);
+    var center = this.findCenter(line_x, line_y, x, y)
+    var image = this.connection_ele.children[1];
+    image.setAttribute('x', center[0]);
+    image.setAttribute('y', center[1]);
 
   }
 
@@ -803,6 +808,10 @@ export default class Drawflow {
 
         const lineCurve = createCurvature(line_x, line_y, x, y, curvature, 'openclose');
         elemsOut[item].children[0].setAttributeNS(null, 'd', lineCurve );
+        var center = this.findCenter(line_x, line_y, x, y)
+        var image = elemsOut[item].children[1];
+        image.setAttribute('x', center[0]);
+        image.setAttribute('y', center[1]);
       } else {
         const points = elemsOut[item].querySelectorAll('.point');
         let linecurve = '';
@@ -963,6 +972,10 @@ export default class Drawflow {
 
         } else {
           elemsOut[item].children[0].setAttributeNS(null, 'd', linecurve);
+          var center = this.findCenter(line_x, line_y, x, y)
+          var image = elemsOut[item].children[1];
+          image.setAttribute('x', center[0]);
+          image.setAttribute('y', center[1]);
         }
 
       }
@@ -1000,6 +1013,10 @@ export default class Drawflow {
         elems[item].children[0].setAttributeNS(null, 'd', 'M '+ line_x +' '+ line_y +' C '+ hx1 +' '+ line_y +' '+ hx2 +' ' + y +' ' + x +'  ' + y );*/
         const lineCurve = createCurvature(line_x, line_y, x, y, curvature, 'openclose');
         elems[item].children[0].setAttributeNS(null, 'd', lineCurve );
+        var center = this.findCenter(line_x, line_y, x, y)
+        var image = elemsOut[item].children[1];
+        image.setAttribute('x', center[0]);
+        image.setAttribute('y', center[1]);
 
       } else {
         const points = elems[item].querySelectorAll('.point');
