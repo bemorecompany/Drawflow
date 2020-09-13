@@ -1016,7 +1016,7 @@ export default class Drawflow {
         const lineCurve = createCurvature(line_x, line_y, x, y, curvature, 'openclose');
         elems[item].children[0].setAttributeNS(null, 'd', lineCurve );
         var center = findCenter(line_x, line_y, x, y, curvature)
-        var image = elemsOut[item].children[1];
+        var image = elems[item].children[1];
         image.setAttribute('x', center[0]);
         image.setAttribute('y', center[1]);
 
