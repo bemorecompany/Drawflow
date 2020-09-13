@@ -630,6 +630,7 @@ export default class Drawflow {
     svgimg.setAttribute('height','20');
     svgimg.setAttribute('width','20');
     svgimg.setAttribute('id','info');
+    svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', '/_nuxt/assets/img/markerpurple.svg');
     
     connection.appendChild(path);
     connection.appendChild(svgimg);
@@ -669,8 +670,8 @@ export default class Drawflow {
     var xc = ((line_x + x) / 2);
     var yc = ((line_y + y) / 2);
 
-    image.svgimg.setAttribute('x',xc);
-    image.svgimg.setAttribute('y',yc);
+    image.setAttribute('x',xc);
+    image.setAttribute('y',yc);
 
   }
 
