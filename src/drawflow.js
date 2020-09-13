@@ -619,15 +619,25 @@ export default class Drawflow {
   drawConnection(ele) {
     var connection = document.createElementNS('http://www.w3.org/2000/svg',"svg");
     this.connection_ele = connection;
+    connection.classList.add("connection");
+
     var path = document.createElementNS('http://www.w3.org/2000/svg',"path");
     path.classList.add("main-path");
     path.setAttributeNS(null, 'd', '');
     // path.innerHTML = 'a';
-    connection.classList.add("connection");
-    connection.classList.add("test");
-    connection.appendChild(path);
-    this.precanvas.appendChild(connection);
+    
+    var svgimg = document.createElementNS('http://www.w3.org/2000/svg',"image");
+    svgimg.classList.add("path-info");
+    svgimg.setAttribute('height','20');
+    svgimg.setAttribute('width','20');
+    svgimg.setAttribute('id','info');
+    svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href','data:image/svg;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDEwQzIwIDE1LjUyMjggMTUuNTIyOCAyMCAxMCAyMEM0LjQ3NzE1IDIwIDAgMTUuNTIyOCAwIDEwQzAgNC40NzcxNSA0LjQ3NzE1IDAgMTAgMEMxNS41MjI4IDAgMjAgNC40NzcxNSAyMCAxMFoiIGZpbGw9IiMwRTU0OTMiLz4KPHBhdGggZD0iTTkuMzQwMjMgNi40NzM2MUM5LjI0NDIzIDYuNDczNjEgOS4xNjI2MyA2LjQ0MDAxIDkuMDk1NDMgNi4zNzI4MUM5LjAyODIzIDYuMzA1NjEgOC45OTQ2MyA2LjIyNDAxIDguOTk0NjMgNi4xMjhWNS4wOTEyMUM4Ljk5NDYzIDQuOTk1MjEgOS4wMjgyMyA0LjkxMzYxIDkuMDk1NDMgNC44NDY0MUM5LjE2MjYzIDQuNzc5MjEgOS4yNDQyMyA0Ljc0NTYxIDkuMzQwMjMgNC43NDU2MUgxMC42NTA2QzEwLjc0NjYgNC43NDU2MSAxMC44MjgyIDQuNzc5MjEgMTAuODk1NCA0Ljg0NjQxQzEwLjk3MjIgNC45MTM2MSAxMS4wMTA2IDQuOTk1MjEgMTEuMDEwNiA1LjA5MTIxVjYuMTI4QzExLjAxMDYgNi4yMjQwMSAxMC45NzcgNi4zMDU2MSAxMC45MDk4IDYuMzcyODFDMTAuODQyNiA2LjQ0MDAxIDEwLjc1NjIgNi40NzM2MSAxMC42NTA2IDYuNDczNjFIOS4zNDAyM1pNOS4zOTc4MyAxNS4yQzkuMzAxODMgMTUuMiA5LjIyMDIzIDE1LjE2NjQgOS4xNTMwMyAxNS4wOTkyQzkuMDg1ODMgMTUuMDMyIDkuMDUyMjMgMTQuOTUwNCA5LjA1MjIzIDE0Ljg1NDRWOC4wNTc2MUM5LjA1MjIzIDcuOTYxNjEgOS4wODU4MyA3Ljg4MDAxIDkuMTUzMDMgNy44MTI4MUM5LjIyMDIzIDcuNzQ1NjEgOS4zMDE4MyA3LjcxMjAxIDkuMzk3ODMgNy43MTIwMUgxMC41OTNDMTAuNjk4NiA3LjcxMjAxIDEwLjc4MDIgNy43NDU2MSAxMC44Mzc4IDcuODEyODFDMTAuOTA1IDcuODcwNDEgMTAuOTM4NiA3Ljk1MjAxIDEwLjkzODYgOC4wNTc2MVYxNC44NTQ0QzEwLjkzODYgMTQuOTUwNCAxMC45MDUgMTUuMDMyIDEwLjgzNzggMTUuMDk5MkMxMC43ODAyIDE1LjE2NjQgMTAuNjk4NiAxNS4yIDEwLjU5MyAxNS4ySDkuMzk3ODNaIiBmaWxsPSIjRjBGMEYwIi8+Cjwvc3ZnPgo=');
+    svgimg.setAttribute('x','0');
+    svgimg.setAttribute('y','0');
 
+    connection.appendChild(path);
+    connection.appendChild(svgimg);
+    this.precanvas.appendChild(connection);
   }
 
   updateConnection(eX, eY) {
@@ -681,7 +691,7 @@ export default class Drawflow {
         this.drawflow.drawflow[nodeOneModule].data[id_input].inputs[input_class].connections.push( {"node": id_output.toString(), "input": output_class});
 
         if(this.module === nodeOneModule) {
-        //Draw connection
+        // Draw connection
           var connection = document.createElementNS('http://www.w3.org/2000/svg',"svg");
           var path = document.createElementNS('http://www.w3.org/2000/svg',"path");
           path.classList.add("main-path");
