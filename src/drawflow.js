@@ -760,6 +760,7 @@ export default class Drawflow {
     const precanvas = this.precanvas;
     const curvature = this.curvature;
     const createCurvature = this.createCurvature;
+    const findCenter = this.findCenter;
     const reroute_curvature = this.reroute_curvature;
     const reroute_curvature_start_end = this.reroute_curvature_start_end;
     const reroute_fix_curvature = this.reroute_fix_curvature;
@@ -808,7 +809,7 @@ export default class Drawflow {
 
         const lineCurve = createCurvature(line_x, line_y, x, y, curvature, 'openclose');
         elemsOut[item].children[0].setAttributeNS(null, 'd', lineCurve );
-        var center = this.findCenter(line_x, line_y, x, y)
+        var center = findCenter(line_x, line_y, x, y)
         var image = elemsOut[item].children[1];
         image.setAttribute('x', center[0]);
         image.setAttribute('y', center[1]);
@@ -972,7 +973,7 @@ export default class Drawflow {
 
         } else {
           elemsOut[item].children[0].setAttributeNS(null, 'd', linecurve);
-          var center = this.findCenter(line_x, line_y, x, y)
+          var center = findCenter(line_x, line_y, x, y)
           var image = elemsOut[item].children[1];
           image.setAttribute('x', center[0]);
           image.setAttribute('y', center[1]);
@@ -1013,7 +1014,7 @@ export default class Drawflow {
         elems[item].children[0].setAttributeNS(null, 'd', 'M '+ line_x +' '+ line_y +' C '+ hx1 +' '+ line_y +' '+ hx2 +' ' + y +' ' + x +'  ' + y );*/
         const lineCurve = createCurvature(line_x, line_y, x, y, curvature, 'openclose');
         elems[item].children[0].setAttributeNS(null, 'd', lineCurve );
-        var center = this.findCenter(line_x, line_y, x, y)
+        var center = findCenter(line_x, line_y, x, y)
         var image = elemsOut[item].children[1];
         image.setAttribute('x', center[0]);
         image.setAttribute('y', center[1]);
