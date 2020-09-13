@@ -630,7 +630,7 @@ export default class Drawflow {
     svgimg.setAttribute('height','20');
     svgimg.setAttribute('width','20');
     svgimg.setAttribute('id','info');
-    svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', '/_nuxt/assets/img/markerpurple.svg');
+    svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', '/_nuxt/assets/img/infoicon.svg');
     
     connection.appendChild(path);
     connection.appendChild(svgimg);
@@ -722,12 +722,20 @@ export default class Drawflow {
           path.classList.add("main-path");
           path.setAttributeNS(null, 'd', '');
           // path.innerHTML = 'a';
+          var svgimg = document.createElementNS('http://www.w3.org/2000/svg',"image");
+          svgimg.classList.add("path-info");
+          svgimg.setAttribute('height','20');
+          svgimg.setAttribute('width','20');
+          svgimg.setAttribute('id','info');
+          svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', '/_nuxt/assets/img/infoicon.svg');
+          
           connection.classList.add("connection");
           connection.classList.add("node_in_node-"+id_input);
           connection.classList.add("node_out_node-"+id_output);
           connection.classList.add(output_class);
           connection.classList.add(input_class);
           connection.appendChild(path);
+          connection.appendChild(svgimg);
           this.precanvas.appendChild(connection);
           this.updateConnectionNodes('node-'+id_output);
           this.updateConnectionNodes('node-'+id_input);
@@ -1448,7 +1456,14 @@ export default class Drawflow {
         var path = document.createElementNS('http://www.w3.org/2000/svg',"path");
         path.classList.add("main-path");
         path.setAttributeNS(null, 'd', '');
-        // path.innerHTML = 'a';
+
+        var svgimg = document.createElementNS('http://www.w3.org/2000/svg',"image");
+        svgimg.classList.add("path-info");
+        svgimg.setAttribute('height','20');
+        svgimg.setAttribute('width','20');
+        svgimg.setAttribute('id','info');
+        svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', '/_nuxt/assets/img/infoicon.svg');
+          
         connection.classList.add("connection");
         connection.classList.add("node_in_node-"+dataNode.id);
         connection.classList.add("node_out_node-"+dataNode.inputs[input_item].connections[output_item].node);
@@ -1456,6 +1471,7 @@ export default class Drawflow {
         connection.classList.add(input_item);
 
         connection.appendChild(path);
+        connection.appendChild(svgimg);
         precanvas.appendChild(connection);
 
       });
