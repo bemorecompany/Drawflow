@@ -624,8 +624,15 @@ export default class Drawflow {
     var path = document.createElementNS('http://www.w3.org/2000/svg',"path");
     path.classList.add("main-path");
     path.setAttributeNS(null, 'd', '');
-    path.innerHTML = 'a';
+
+    var svgimg = document.createElementNS('http://www.w3.org/2000/svg',"image");
+    svgimg.classList.add("path-info");
+    svgimg.setAttribute('height','20');
+    svgimg.setAttribute('width','20');
+    svgimg.setAttribute('id','info');
+    
     connection.appendChild(path);
+    connection.appendChild(svgimg);
     this.precanvas.appendChild(connection);
   }
 
@@ -637,6 +644,7 @@ export default class Drawflow {
     let precanvasHeightZoom = precanvas.clientHeight / (precanvas.clientHeight * zoom);
     precanvasHeightZoom = precanvasHeightZoom || 0;
     var path = this.connection_ele.children[0];
+    var image = this.connection_ele.children[1];
 
     /*var line_x = this.ele_selected.offsetWidth/2 + this.line_path/2 + this.ele_selected.parentElement.parentElement.offsetLeft + this.ele_selected.offsetLeft;
     var line_y = this.ele_selected.offsetHeight/2 + this.line_path/2 + this.ele_selected.parentElement.parentElement.offsetTop + this.ele_selected.offsetTop;*/
@@ -657,6 +665,12 @@ export default class Drawflow {
     var curvature = this.curvature;
     var lineCurve = this.createCurvature(line_x, line_y, x, y, curvature, 'openclose');
     path.setAttributeNS(null, 'd', lineCurve);
+
+    var xc = ((line_x + x) / 2);
+    var yc = ((line_y + y) / 2);
+
+    image.svgimg.setAttribute('x',xc);
+    image.svgimg.setAttribute('y',yc);
 
   }
 
