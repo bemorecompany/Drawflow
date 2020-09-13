@@ -624,6 +624,7 @@ export default class Drawflow {
     path.setAttributeNS(null, 'd', '');
     // path.innerHTML = 'a';
     connection.classList.add("connection");
+    connection.classList.add("test");
     connection.appendChild(path);
     this.precanvas.appendChild(connection);
 
