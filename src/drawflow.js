@@ -260,6 +260,24 @@ export default class Drawflow {
           });
         }
       break;
+      case 'path-info':{
+        if(this.node_selected != null) {
+          this.node_selected.classList.remove("selected");
+          this.node_selected = null;
+        }
+        if(this.connection_selected != null) {
+          this.connection_selected.classList.remove("selected");
+          this.connection_selected = null;
+        }
+        this.connection_selected = this.ele_selected;
+        let sibling = this.connection_selected.previousSibling();
+        sibling.classList.add("selected");
+        if(this.reroute_fix_curvature) {
+          this.connection_selected.parentElement.querySelectorAll(".main-path").forEach((item, i) => {
+            item.classList.add("selected");
+          });
+        }
+      }
       case 'point':
         this.drag_point = true;
         this.ele_selected.classList.add("selected");
