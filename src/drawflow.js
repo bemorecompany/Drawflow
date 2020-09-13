@@ -616,7 +616,8 @@ export default class Drawflow {
 
   }
 
-  findCenter(line_x, line_y, x, y){
+  findCenter(line_x, line_y, x, y, curvature){
+    
     function lerp(A, B, t) {
       // A and B are arrays where the first element is the x 
       // and the second element is the y coordinate of the point
@@ -694,7 +695,7 @@ export default class Drawflow {
     var lineCurve = this.createCurvature(line_x, line_y, x, y, curvature, 'openclose');
     path.setAttributeNS(null, 'd', lineCurve);
 
-    var center = this.findCenter(line_x, line_y, x, y)
+    var center = this.findCenter(line_x, line_y, x, y, curvature)
     var image = this.connection_ele.children[1];
     image.setAttribute('x', center[0]);
     image.setAttribute('y', center[1]);
@@ -809,7 +810,7 @@ export default class Drawflow {
 
         const lineCurve = createCurvature(line_x, line_y, x, y, curvature, 'openclose');
         elemsOut[item].children[0].setAttributeNS(null, 'd', lineCurve );
-        var center = findCenter(line_x, line_y, x, y)
+        var center = findCenter(line_x, line_y, x, y, curvature)
         var image = elemsOut[item].children[1];
         image.setAttribute('x', center[0]);
         image.setAttribute('y', center[1]);
@@ -973,7 +974,7 @@ export default class Drawflow {
 
         } else {
           elemsOut[item].children[0].setAttributeNS(null, 'd', linecurve);
-          var center = findCenter(line_x, line_y, x, y)
+          var center = findCenter(line_x, line_y, x, y, curvature)
           var image = elemsOut[item].children[1];
           image.setAttribute('x', center[0]);
           image.setAttribute('y', center[1]);
@@ -1014,7 +1015,7 @@ export default class Drawflow {
         elems[item].children[0].setAttributeNS(null, 'd', 'M '+ line_x +' '+ line_y +' C '+ hx1 +' '+ line_y +' '+ hx2 +' ' + y +' ' + x +'  ' + y );*/
         const lineCurve = createCurvature(line_x, line_y, x, y, curvature, 'openclose');
         elems[item].children[0].setAttributeNS(null, 'd', lineCurve );
-        var center = findCenter(line_x, line_y, x, y)
+        var center = findCenter(line_x, line_y, x, y, curvature)
         var image = elemsOut[item].children[1];
         image.setAttribute('x', center[0]);
         image.setAttribute('y', center[1]);
