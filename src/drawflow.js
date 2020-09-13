@@ -270,7 +270,7 @@ export default class Drawflow {
           this.connection_selected = null;
         }
         this.connection_selected = this.ele_selected;
-        let sibling = this.connection_selected.previousSibling();
+        var sibling = this.ele_selected.previousElementSibling;
         sibling.classList.add("selected");
         if(this.reroute_fix_curvature) {
           this.connection_selected.parentElement.querySelectorAll(".main-path").forEach((item, i) => {
