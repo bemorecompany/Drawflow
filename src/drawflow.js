@@ -1832,6 +1832,7 @@ export default class Drawflow {
     var moduleName = this.getModuleFromNodeId(id);
     let newClass = String(nodeData.class+'_filter_hidden');
     this.drawflow.drawflow[moduleName].data[id].class = newClass;
+    this.dispatch('nodeHidden', id);
     console.log(this.drawflow.drawflow[moduleName].data[id].class);
   }
 
