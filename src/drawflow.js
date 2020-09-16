@@ -181,7 +181,7 @@ export default class Drawflow {
       return false;
     }
 
-    switch (this.ele_selected.classList[0]) {
+    switch (hovered.classList[0]) {
       case 'drawflow-node':
         this.nodeHover = hovered;
         this.dispatch('nodeMouseIn', hovered.id.slice(5));
