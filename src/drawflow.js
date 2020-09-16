@@ -31,6 +31,7 @@ export default class Drawflow {
 
 
     this.select_elements = null;
+    this.nodeHover = null;
     this.noderegister = {};
     this.render = render;
     this.drawflow = { "drawflow": { "Home": { "data": {} }}};
@@ -60,6 +61,8 @@ export default class Drawflow {
     this.container.addEventListener('mouseup', this.dragEnd.bind(this));
     this.container.addEventListener('mousemove', this.position.bind(this));
     this.container.addEventListener('mousedown', this.click.bind(this) );
+    this.container.addEventListener('mouseover', this.hover.bind(this) );
+    this.container.addEventListener('mouseout', this.hover.bind(this) );
 
     this.container.addEventListener('touchend', this.dragEnd.bind(this));
     this.container.addEventListener('touchmove', this.position.bind(this));
@@ -168,6 +171,25 @@ export default class Drawflow {
         item.classList.remove("selected");
       });
     }
+  }
+
+  hover(e){
+    let hovered;
+    if(e.target.closest(".drawflow_content_node") != null) {
+      hovered = e.target.closest(".drawflow_content_node").parentElement;
+    }else {
+      return false;
+    }
+
+    switch (this.ele_selected.classList[0]) {
+      case 'drawflow-node':
+        this.nodeHover = hovered;
+        this.dispatch('nodeMouseIn', hovered.id.slice(5));
+      break;
+      default: 
+      this.dispatch('nodeMouseOut', hovered.id.slice(5));
+    }
+      
   }
 
   click(e) {
@@ -1825,15 +1847,6 @@ export default class Drawflow {
     }
     delete this.drawflow.drawflow[moduleName].data[id.slice(5)];
     this.dispatch('nodeRemoved', id.slice(5));
-  }
-
-  hideNodeId(id){
-    var nodeData = this.getNodeFromId(id);
-    var moduleName = this.getModuleFromNodeId(id);
-    let newClass = String(nodeData.class+'_filter_hidden');
-    this.drawflow.drawflow[moduleName].data[id].class = newClass;
-    this.dispatch('nodeHidden', id);
-    console.log(this.drawflow.drawflow[moduleName].data[id].class);
   }
 
   removeConnection() {
