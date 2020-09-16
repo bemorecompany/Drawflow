@@ -2,10 +2,7 @@
 ![npm](https://img.shields.io/npm/dy/drawflow)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/drawflow)
 [![GitHub license](https://img.shields.io/github/license/jerosoler/Drawflow)](https://github.com/jerosoler/Drawflow/blob/master/LICENSE)
-[![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fjerosoler)](https://twitter.com/jerosoler)
 # Drawflow
-
-![Demo](https://github.com/jerosoler/Drawflow/raw/master/docs/drawflow.gif)
 
 Simple flow library.
 

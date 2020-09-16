@@ -1827,6 +1827,11 @@ export default class Drawflow {
     this.dispatch('nodeRemoved', id.slice(5));
   }
 
+  hideNodeId(id){
+    var nodeData = this.getNodeFromId(id);
+    console.log(nodeData);
+  }
+
   removeConnection() {
     if(this.connection_selected != null) {
       var listclass = this.connection_selected.parentElement.classList;
