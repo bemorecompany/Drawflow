@@ -1829,7 +1829,7 @@ export default class Drawflow {
 
   hideNodeId(id){
     var nodeData = this.getNodeFromId(id);
-    console.log(nodeData);
+    this.drawflow.drawflow[moduleName].data[id].class = nodeData.class+' filter_hidden';
   }
 
   removeConnection() {
