@@ -193,33 +193,29 @@ export default class Drawflow {
 
   click(e) {
     if(this.editor_mode === 'fixed') {
-      console.log(e);
-      console.log(e.target.closest(".drawflow_content_node"));
-      console.log(e.target.classList[0]);
-      //return false;
-       if (e.target.classList[0] === 'parent-drawflow' || 
-          e.target.classList[0] === 'connection' || 
-          e.target.classList[0] === 'main-path' || 
-          e.target.classList[0] === 'path-info' || 
-          e.target.classList[0] === 'drawflow-node') {
-            
-            this.ele_selected = e.target;
 
-       } else {
-         return false;
-       }
-
-    } else {
-      this.first_click = e.target;
-      this.ele_selected = e.target;
-      if(e.button === 0) {
-        this.contextmenuDel();
-      }
-
-      if(e.target.closest(".drawflow_content_node") != null) {
+      if (e.target.closest(".drawflow_content_node") != null) {
         this.ele_selected = e.target.closest(".drawflow_content_node").parentElement;
       }
+      else if (e.target.classList[0] === 'parent-drawflow' || 
+        e.target.classList[0] === 'connection' || 
+        e.target.classList[0] === 'main-path' || 
+        e.target.classList[0] === 'path-info' || 
+        e.target.classList[0] === 'drawflow-node') {
+          this.ele_selected = e.target;
+      }
+      else {
+        return false;
+      }
+    } 
+    else {
+      this.first_click = e.target;
+      this.ele_selected = e.target;
+      if (e.button === 0) {
+        this.contextmenuDel();
+      }
     }
+    console.log(this.ele_selected.classList[0]);
     switch (this.ele_selected.classList[0]) {
       case 'drawflow-node':
         if(this.node_selected != null) {
