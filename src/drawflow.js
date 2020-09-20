@@ -181,15 +181,13 @@ export default class Drawflow {
       hovered = e.target;
     }
 
-    console.log(hovered.classList[0]);
-
     if (hovered.classList[0] === 'drawflow-node'){
       this.nodeHover = hovered;
       this.dispatch('nodeMouseIn', hovered.id.slice(5));
     }
     else {
-      this.dispatch('nodeMouseOut', this.nodeHover.id.slice(5));
-      this.nodeHover = '';
+      this.dispatch('nodeMouseOut', null);
+      this.nodeHover = null;
     }      
   }
 
@@ -200,7 +198,7 @@ export default class Drawflow {
           e.target.classList[0] === 'connection' || 
           e.target.classList[0] === 'main-path' || 
           e.target.classList[0] === 'path-info' || 
-          e.target.classList[0] === 'drawflow') {
+          e.target.classList[0] === 'drawflow-node') {
             this.ele_selected = e.target;
 
             if(e.target.closest(".drawflow_content_node") != null) {
