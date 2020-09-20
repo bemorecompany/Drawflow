@@ -193,7 +193,8 @@ export default class Drawflow {
 
   click(e) {
     if(this.editor_mode === 'fixed') {
-      console.log(e.target);
+      console.log(e);
+      console.log(e.target.closest(".drawflow_content_node"));
       console.log(e.target.classList[0]);
       //return false;
        if (e.target.classList[0] === 'parent-drawflow' || 
