@@ -193,17 +193,17 @@ export default class Drawflow {
 
   click(e) {
     if(this.editor_mode === 'fixed') {
+      console.log(e.target);
+      console.log(e.target.classList[0]);
       //return false;
-       if(e.target.classList[0] === 'parent-drawflow' || 
+       if (e.target.classList[0] === 'parent-drawflow' || 
           e.target.classList[0] === 'connection' || 
           e.target.classList[0] === 'main-path' || 
           e.target.classList[0] === 'path-info' || 
           e.target.classList[0] === 'drawflow-node') {
+            
             this.ele_selected = e.target;
 
-            if(e.target.closest(".drawflow_content_node") != null) {
-              this.ele_selected = e.target.closest(".drawflow_content_node").parentElement;
-            }
        } else {
          return false;
        }
