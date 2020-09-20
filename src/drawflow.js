@@ -181,15 +181,16 @@ export default class Drawflow {
       return false;
     }
 
-    switch (hovered.classList[0]) {
-      case 'drawflow-node':
-        this.nodeHover = hovered;
-        this.dispatch('nodeMouseIn', hovered.id.slice(5));
-      break;
-      default: 
-      this.dispatch('nodeMouseOut', hovered.id.slice(5));
+    console.log(hovered.classList[0]);
+
+    if (hovered.classList[0] === 'drawflow-node'){
+      this.nodeHover = hovered;
+      this.dispatch('nodeMouseIn', hovered.id.slice(5));
     }
-      
+    else {
+      this.dispatch('nodeMouseOut', this.nodeHover.id.slice(5));
+      this.nodeHover = '';
+    }      
   }
 
   click(e) {
