@@ -196,7 +196,11 @@ export default class Drawflow {
   click(e) {
     if(this.editor_mode === 'fixed') {
       //return false;
-       if(e.target.classList[0] === 'parent-drawflow' || e.target.classList[0] === 'drawflow') {
+       if(e.target.classList[0] === 'parent-drawflow' || 
+          e.target.classList[0] === 'connection' || 
+          e.target.classList[0] === 'main-path' || 
+          e.target.classList[0] === 'path-info' || 
+          e.target.classList[0] === 'drawflow') {
          this.ele_selected = e.target.closest(".parent-drawflow");
        } else {
          return false;
