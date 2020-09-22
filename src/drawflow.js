@@ -784,7 +784,7 @@ export default class Drawflow {
           svgimg.setAttribute('height','20');
           svgimg.setAttribute('width','20');
           svgimg.setAttribute('id','info');
-          svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', '/_nuxt/assets/img/infoicon.svg');
+          svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', this.assetUrl);
           
           connection.classList.add("connection");
           connection.classList.add("node_in_node-"+id_input);
@@ -1532,7 +1532,7 @@ export default class Drawflow {
         svgimg.setAttribute('height','20');
         svgimg.setAttribute('width','20');
         svgimg.setAttribute('id','info');
-        svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', '/_nuxt/assets/img/infoicon.svg');
+        svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', this.assetUrl);
           
         connection.classList.add("connection");
         connection.classList.add("node_in_node-"+dataNode.id);
