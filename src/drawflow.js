@@ -27,6 +27,7 @@ export default class Drawflow {
     this.line_path = 5;
     this.first_click = null;
     this.force_first_input = false;
+    this.assetUrl = '';
 
 
 
@@ -709,7 +710,7 @@ export default class Drawflow {
     svgimg.setAttribute('height','20');
     svgimg.setAttribute('width','20');
     svgimg.setAttribute('id','info');
-    svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', '/_nuxt/assets/img/infoicon.svg');
+    svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', this.assetUrl);
     
     connection.appendChild(path);
     connection.appendChild(svgimg);
