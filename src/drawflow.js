@@ -193,7 +193,7 @@ export default class Drawflow {
   }
 
   click(e) {
-    if(this.editor_mode === 'fixed') {
+    if(this.editor_mode === 'fixed') { // if view is locked
 
       if (e.target.closest(".drawflow_content_node") != null) {
         this.ele_selected = e.target.closest(".drawflow_content_node").parentElement;
@@ -210,7 +210,7 @@ export default class Drawflow {
         return false;
       }
     } 
-    else {
+    else { // if views is open
       this.first_click = e.target;
       this.ele_selected = e.target;
       if (e.button === 0) {
@@ -236,7 +236,9 @@ export default class Drawflow {
           }
         this.node_selected = this.ele_selected;
         this.node_selected.classList.add("selected");
-        this.drag = true;
+        if(this.editor_mode !== 'fixed'){
+          this.drag = true;
+        }
         break;
       case 'output':
         this.connection = true;
