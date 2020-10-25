@@ -28,7 +28,7 @@ export default class Drawflow {
     this.first_click = null;
     this.force_first_input = false;
     this.assetUrl = '';
-
+    this.test123 = ''; // test 
 
 
     this.select_elements = null;
