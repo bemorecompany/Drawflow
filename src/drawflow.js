@@ -1677,7 +1677,17 @@ export default class Drawflow {
       }
 
     }
+  }
 
+  updateNodeClass(id, add, remove){
+    var moduleName = this.getModuleFromNodeId(id)
+    const infoNode = this.getNodeFromId(id)
+
+    console.log('node', infoNode);
+
+    if (this.module === moduleName) {
+      
+    }
 
   }
 
