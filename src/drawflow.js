@@ -63,8 +63,8 @@ export default class Drawflow {
     this.container.addEventListener('mouseout', this.hover.bind(this) );
 
     this.container.addEventListener('touchend', this.dragEnd.bind(this));
-    this.container.addEventListener('touchmove', this.position.bind(this));
-    this.container.addEventListener('touchstart', this.click.bind(this));
+    this.container.addEventListener('touchmove', this.position.bind(this), { passive: true});
+    this.container.addEventListener('touchstart', this.click.bind(this), { passive: true});
 
     /* Context Menu */
     this.container.addEventListener('contextmenu', this.contextmenu.bind(this));
@@ -1402,11 +1402,17 @@ export default class Drawflow {
     node.setAttribute("id", "node-"+this.nodeId);
     node.classList.add("drawflow-node");
 
+    console.log('classoverride', classoverride);
+
     if (classoverride != '') {
       let listOfClasses = classoverride.split(' ');
+
+      console.log('split', listOfClasses);
       
       if (listOfClasses.length > 1){
         listOfClasses.forEach( (className) => {
+
+          console.log('loop', className);
           node.classList.add(className);
         })
       }
