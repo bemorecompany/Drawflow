@@ -28,9 +28,6 @@ export default class Drawflow {
     this.first_click = null;
     this.force_first_input = false;
     this.assetUrl = '';
-    this.test123 = ''; // test 
-
-
     this.select_elements = null;
     this.nodeHover = null;
     this.noderegister = {};
@@ -75,7 +72,7 @@ export default class Drawflow {
     this.container.addEventListener('keydown', this.key.bind(this));
 
     /* Zoom Mouse */
-    this.container.addEventListener('wheel', this.zoom_enter.bind(this));
+    this.container.addEventListener('wheel', this.zoom_enter.bind(this), { passive: true});
     /* Update data Nodes */
     this.container.addEventListener('input', this.updateNodeValue.bind(this));
 
@@ -1404,18 +1401,22 @@ export default class Drawflow {
     node.innerHTML = "";
     node.setAttribute("id", "node-"+this.nodeId);
     node.classList.add("drawflow-node");
-    if(classoverride != '') {
-      node.classList.add(classoverride);
-    }
 
+    if (classoverride != '') {
+      let listOfClasses = classoverride.split(' ');
+      
+      if (listOfClasses.length > 1){
+        listOfClasses.forEach( (className) => {
+          node.classList.add(className);
+        })
+      }
+    }
 
     const inputs = document.createElement('div');
     inputs.classList.add("inputs");
 
     const outputs = document.createElement('div');
     outputs.classList.add("outputs");
-
-
 
     const json_inputs = {}
     for(var x = 0; x < num_in; x++) {
