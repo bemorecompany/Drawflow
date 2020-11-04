@@ -1679,32 +1679,15 @@ export default class Drawflow {
     }
   }
 
-  updateNodeClass(id, add, remove){
+  updateNodeClass(id, addClass, removeClass){
     var moduleName = this.getModuleFromNodeId(id)
     const infoNode = this.getNodeFromId(id)
 
-    var allClasses = infoNode.class.split(' ');
-
-    allClasses.forEach( (className, index) => {
-
-      console.log('found', index);
-
-      if ( String(className) === String(remove)){
-        allClasses.splice(index, 1);
-      } 
-
-    });
-
-    console.log('allb', allClasses);
-    allClasses.push(add);
-
-    console.log('all', allClasses);
-    
-    let newClass = allClasses.join(" ");
-    console.log('nc', allClasses);
-
     if (this.module === moduleName) {
-      this.drawflow.drawflow[moduleName].data[id].class = newClass;
+      const parent = document.querySelector('#node-'+id);
+      parent.classList.remove(removeClass);
+      parent.classList.add(addClass);
+      this.updateConnectionNodes('node-'+id);
     }
   }
 
