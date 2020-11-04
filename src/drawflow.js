@@ -1685,10 +1685,11 @@ export default class Drawflow {
 
     if (this.module === moduleName) {
       const parent = document.querySelector('#node-'+id);
-      parent.classList.remove(removeClass);
       parent.classList.add(addClass);
+      parent.classList.remove(removeClass);
+      console.log(parent.classList);
       this.updateConnectionNodes('node-'+id);
-      this.drawflow.drawflow[moduleName].data[id].class = parent.classList;
+      this.drawflow.drawflow[moduleName].data[id].class = 'test';
     }
   }
 
