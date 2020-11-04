@@ -1683,12 +1683,27 @@ export default class Drawflow {
     var moduleName = this.getModuleFromNodeId(id)
     const infoNode = this.getNodeFromId(id)
 
+    var allClasses = infoNode.class.split(' ');
+
+    allClasses.forEach( (className, index) => {
+
+      console.log('found', index);
+
+      if ( string(className) === string(remove)){
+        allClasses.splice(index, 1);
+      } 
+
+    });
+
+    allClasses.push(add);
+
+    let newClass = allClasses.join(" ");
+    console.log('node', id);
     console.log('node', infoNode);
 
     if (this.module === moduleName) {
-      
+      this.drawflow.drawflow[moduleName].data[id].class = newClass;
     }
-
   }
 
   addNodeInput(id) {
