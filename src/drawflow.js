@@ -1695,11 +1695,13 @@ export default class Drawflow {
 
     });
 
+    console.log('allb', allClasses);
     allClasses.push(add);
 
+    console.log('all', allClasses);
+    
     let newClass = allClasses.join(" ");
-    console.log('node', id);
-    console.log('node', infoNode);
+    console.log('nc', allClasses);
 
     if (this.module === moduleName) {
       this.drawflow.drawflow[moduleName].data[id].class = newClass;
