@@ -1689,7 +1689,7 @@ export default class Drawflow {
 
       console.log('found', index);
 
-      if ( string(className) === string(remove)){
+      if ( String(className) === String(remove)){
         allClasses.splice(index, 1);
       } 
 
