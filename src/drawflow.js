@@ -1688,6 +1688,7 @@ export default class Drawflow {
       parent.classList.remove(removeClass);
       parent.classList.add(addClass);
       this.updateConnectionNodes('node-'+id);
+      this.drawflow.drawflow[moduleName].data[id].class = parent.classList;
     }
   }
 
