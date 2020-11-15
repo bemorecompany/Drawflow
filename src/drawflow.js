@@ -1402,17 +1402,12 @@ export default class Drawflow {
     node.setAttribute("id", "node-"+this.nodeId);
     node.classList.add("drawflow-node");
 
-    console.log('classoverride', classoverride);
-
     if (classoverride != '') {
       let listOfClasses = classoverride.split(' ');
-
-      console.log('split', listOfClasses);
       
       if (listOfClasses.length > 1){
         listOfClasses.forEach( (className) => {
 
-          console.log('loop', className);
           node.classList.add(className);
         })
       }
@@ -1687,7 +1682,6 @@ export default class Drawflow {
       const parent = document.querySelector('#node-'+id);
       parent.classList.add(addClass);
       parent.classList.remove(removeClass);
-      console.log(parent.classList);
       this.updateConnectionNodes('node-'+id);
       this.drawflow.drawflow[moduleName].data[id].class = 'test';
     }
@@ -1890,7 +1884,6 @@ export default class Drawflow {
     if(this.connection_selected != null) {
       var listclass = this.connection_selected.parentElement.classList;
       this.connection_selected.parentElement.remove();
-      //console.log(listclass);
       var index_out = this.drawflow.drawflow[this.module].data[listclass[2].slice(14)].outputs[listclass[3]].connections.findIndex(function(item,i) {
         return item.node === listclass[1].slice(13) && item.output === listclass[4]
       });
