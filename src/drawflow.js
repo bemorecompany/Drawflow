@@ -533,7 +533,7 @@ export default class Drawflow {
 
   }
   contextmenu(e) {
-    e.preventDefault();
+    // e.preventDefault();
     if(this.editor_mode === 'fixed') {
       return false;
     }
@@ -583,7 +583,7 @@ export default class Drawflow {
 
   zoom_enter(event, delta) {
     if (event.ctrlKey) {
-      event.preventDefault()
+      // event.preventDefault();
       if(event.deltaY > 0) {
         // Zoom Out
         this.zoom_out();
@@ -742,6 +742,10 @@ export default class Drawflow {
 
     //path.setAttributeNS(null, 'd', 'M '+ line_x +' '+ line_y +' C '+ hx1 +' '+ line_y +' '+ hx2 +' ' + y +' ' + x +'  ' + y);
     var curvature = this.curvature;
+    console.log('line_x',line_x);
+    console.log('line_y', line_y);
+    console.log('y', y);
+    console.log('x', x);
     var lineCurve = this.createCurvature(line_x, line_y, x, y, curvature, 'openclose');
     path.setAttributeNS(null, 'd', lineCurve);
 
