@@ -219,6 +219,7 @@ export default class Drawflow {
         this.ele_selected = e.target.closest(".drawflow_content_node").parentElement;
       }
     }
+    console.log('clickcheck', this.ele_selected.classList[0]);
     switch (this.ele_selected.classList[0]) {
       case 'drawflow-node':
         if(this.node_selected != null) {
