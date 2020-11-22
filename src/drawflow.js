@@ -295,6 +295,9 @@ export default class Drawflow {
         }
       break;
       case 'path-info':{
+        console.log(this.node_selected);
+        console.log(this.connection_selected);
+        console.log(this.this.ele_selected);
         if(this.node_selected != null) {
           this.node_selected.classList.remove("selected");
           this.node_selected = null;
@@ -303,8 +306,8 @@ export default class Drawflow {
           this.connection_selected.classList.remove("selected");
           this.connection_selected = null;
         }
-        this.connection_selected = this.ele_selected;
         var sibling = this.ele_selected.previousElementSibling;
+        this.connection_selected = sibling;
         sibling.classList.add("selected");
         if(this.reroute_fix_curvature) {
           this.connection_selected.parentElement.querySelectorAll(".main-path").forEach((item, i) => {
