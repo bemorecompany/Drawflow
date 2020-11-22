@@ -185,7 +185,6 @@ export default class Drawflow {
       this.dispatch('nodeMouseIn', hovered.id.slice(5));
     }
     else {
-      this.updateConnectionNodes('node-'+hovered.id.slice(5));
       this.dispatch('nodeMouseOut', null);
       this.nodeHover = null;
     }      
@@ -758,7 +757,7 @@ export default class Drawflow {
 
   }
 
-  addConnection(id_output, id_input, output_class, input_class) {
+  addConnection(id_output, id_input, output_class, input_class, classType = false) {
     var nodeOneModule = this.getModuleFromNodeId(id_output);
     var nodeTwoModule = this.getModuleFromNodeId(id_input);
     if(nodeOneModule === nodeTwoModule) {
@@ -792,6 +791,9 @@ export default class Drawflow {
           svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', this.assetUrl);
           
           connection.classList.add("connection");
+          if (classType !== false){
+            connection.classList.add(classType);
+          }
           connection.classList.add("node_in_node-"+id_input);
           connection.classList.add("node_out_node-"+id_output);
           connection.classList.add(output_class);
