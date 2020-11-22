@@ -297,7 +297,7 @@ export default class Drawflow {
       case 'path-info':{
         console.log(this.node_selected);
         console.log(this.connection_selected);
-        console.log(this.this.ele_selected);
+        console.log(this.ele_selected);
         if(this.node_selected != null) {
           this.node_selected.classList.remove("selected");
           this.node_selected = null;
