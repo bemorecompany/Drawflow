@@ -178,12 +178,14 @@ export default class Drawflow {
     }else {
       hovered = e.target;
     }
-
+    
     if (hovered.classList[0] === 'drawflow-node'){
       this.nodeHover = hovered;
+      this.updateConnectionNodes('node-'+hovered.id.slice(5));
       this.dispatch('nodeMouseIn', hovered.id.slice(5));
     }
     else {
+      this.updateConnectionNodes('node-'+hovered.id.slice(5));
       this.dispatch('nodeMouseOut', null);
       this.nodeHover = null;
     }      
