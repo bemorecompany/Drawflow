@@ -791,7 +791,7 @@ export default class Drawflow {
           svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', this.assetUrl);
           
           connection.classList.add("connection");
-          if (classType !== false){
+          if (classType !== false || classType !== null){
             connection.classList.add(classType);
           }
           connection.classList.add("node_in_node-"+id_input);
