@@ -219,7 +219,6 @@ export default class Drawflow {
         this.ele_selected = e.target.closest(".drawflow_content_node").parentElement;
       }
     }
-    console.log('clickcheck', this.ele_selected.classList[0]);
     switch (this.ele_selected.classList[0]) {
       case 'drawflow-node':
         if(this.node_selected != null) {
@@ -295,9 +294,6 @@ export default class Drawflow {
         }
       break;
       case 'path-info':{
-        console.log(this.node_selected);
-        console.log(this.connection_selected);
-        console.log(this.ele_selected);
         if(this.node_selected != null) {
           this.node_selected.classList.remove("selected");
           this.node_selected = null;
@@ -747,10 +743,6 @@ export default class Drawflow {
 
     //path.setAttributeNS(null, 'd', 'M '+ line_x +' '+ line_y +' C '+ hx1 +' '+ line_y +' '+ hx2 +' ' + y +' ' + x +'  ' + y);
     var curvature = this.curvature;
-    console.log('line_x',line_x);
-    console.log('line_y', line_y);
-    console.log('y', y);
-    console.log('x', x);
     var lineCurve = this.createCurvature(line_x, line_y, x, y, curvature, 'openclose');
     path.setAttributeNS(null, 'd', lineCurve);
 
@@ -1315,7 +1307,6 @@ export default class Drawflow {
 
 
       if(this.reroute_fix_curvature) {
-        //console.log(position_add_array_point)
         if(position_add_array_point > 0) {
           this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections[searchConnection].points.splice(position_add_array_point, 0, { pos_x: pos_x, pos_y: pos_y });
         } else {
